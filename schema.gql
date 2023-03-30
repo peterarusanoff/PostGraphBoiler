@@ -14,5 +14,5 @@ type Payload {
 }
 
 type Query {
-  payload(databaseId: Float!): Payload!
+  payload(column: String, databaseId: Float!, filter: String, value: String): Payload!
 }

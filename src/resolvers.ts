@@ -7,10 +7,15 @@ import { PayloadService } from "./services";
 @Resolver(Payload)
 export class PayloadResolver {
     @Inject()
-    private PayloadService: PayloadService
+    private payloadService: PayloadService;
 
     @Query(returns => Payload)
-    payload(@Arg("databaseId") databaseId: number) {
-        return this.PayloadService.fetchPayload(databaseId) 
+    payload(
+      @Arg("databaseId") databaseId: number,
+      @Arg("column", { nullable: true }) column?: string,
+      @Arg("filter", { nullable: true }) filter?: string,
+      @Arg("value", { nullable: true }) value?: string
+    ) {
+        return this.payloadService.fetchPayload(databaseId, column, filter, value);
     }
 }
